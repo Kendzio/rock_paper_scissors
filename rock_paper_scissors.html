@@ -1,4 +1,23 @@
 <html>
+<head>
+	<title>
+		Rock, Paper, Scissors
+	</title>
+	<link rel='stylesheet' type="text/css" href="style.css">
+</head>
+<body>
+	<div class="buttons">
+		<button type="button value="scissors" id="scissors_button">scissors</button>
+		<button type="button value="rock" id="rock_button">rock</button>
+		<button type="button value="paper" id="paper_button">paper</button>
+	</div>
+	<div class="results">
+		<p id="player_score"></p>
+		<p id="computer_score"></p>
+		<p id="draws"></p>
+	</div>
+
+</body>
 	<script>
 		function computerPlay() {
 			let playOptions = ['rock', 'paper', 'scissors'];
@@ -10,40 +29,86 @@
 			let resultMessage = '';
 			if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'rock') {
 				resultMessage = `You win, ${playerSelection} beats ${computerSelection}.`
-				//TODO: customize message
 			} else if (playerSelection == 'rock' && computerSelection == 'rock' || playerSelection == 'paper' && computerSelection == 'paper' || playerSelection == 'scissors' && computerSelection == 'scissors') {
 				resultMessage = `Draw, ${playerSelection} equals ${computerSelection}.`
-				//TODO: customize message
 			} else {
 				resultMessage = `You lose, ${playerSelection} gets beaten by ${computerSelection}.`
-				//TODO: customize message
 			}
 			return resultMessage;
 		} 
 
-		function game() {
-			// should be 5 rounds game, should track results
-			let computerScore = 0;
-			let playerScore = 0;
-			let draws = 0;
-			for (let i = 0; i < 5; i++) {
-				let result = singleRound(prompt("Choose rock / paper / scissors.").toLowerCase(), computerPlay())
-				console.log(result)
-				if (result.includes('win')) {
+		function playScissors(playerScore = 0, computerScore = 0, draws = 0) {
+			let mes = singleRound("scissors", computerPlay());
+			if (mes.includes('win')) {
 					playerScore += 1;
+					let playerPara = document.querySelector('#player_score');
+					playerPara.innerHTML = playerScore;
 					console.log(`Player score : ${playerScore}`)
-				} else if (result.includes('lose')) {
+				} else if (mes.includes('lose')) {
 					computerScore += 1;
+					let computerPara = document.querySelector('#computer_score');
+					computerPara.innerHTML = computerScore;
 					console.log(`Computer score : ${computerScore}`)
 				} else {
 					draws += 1;
+					let drawsPara = document.querySelector('#draws');
+					drawsPara.innerHTML = draws;
 					console.log(`Draws : ${draws}`)
 				}
+			return mes
+		}
+		
+		function playPaper(playerScore = 0, computerScore = 0, draws = 0) {
+			let mes = singleRound("paper", computerPlay());
+			if (mes.includes('win')) {
+					playerScore += 1;
+					let playerPara = document.querySelector('#player_score');
+					console.log(`Player score : ${playerScore}`)
+				} else if (mes.includes('lose')) {
+					computerScore += 1;
+					let computerPara = document.querySelector('#computer_score');
+					console.log(`Computer score : ${computerScore}`)
+				} else {
+					draws += 1;
+					let drawsPara = document.querySelector('#draws');
+					console.log(`Draws : ${draws}`)
 				}
-				console.log(`Results: Player Score: ${playerScore}, Computer Score: ${computerScore}, Draws: ${draws}`)
+			return mes
+		}
+		
+		function playRock(playerScore = 0, computerScore = 0, draws = 0) {
+			let mes = singleRound("rock", computerPlay());
+			if (mes.includes('win')) {
+					playerScore += 1;
+					let playerPara = document.querySelector('#player_score');
+					console.log(`Player score : ${playerScore}`)
+				} else if (mes.includes('lose')) {
+					computerScore += 1;
+					let computerPara = document.querySelector('#computer_score');
+					console.log(`Computer score : ${computerScore}`)
+				} else {
+					draws += 1;
+					let drawsPara = document.querySelector('#draws');
+					console.log(`Draws : ${draws}`)
+				}
+			return mes
+		}
 
-			}
 
-		console.log(game());
+		let scissors = document.getElementById("scissors_button");
+		let paper = document.getElementById("paper_button");
+		let rock = document.getElementById("rock_button");
+
+		let playerScore = 0;
+		let computerScore = 0;
+		let draws = 0;
+
+		let scissorsOutput = scissors.addEventListener("click", function(){playScissors(playerScore, computerScore, draws)});
+		let paperOutput = paper.addEventListener("click", function(){playPaper(playerScore, computerScore, draws)});
+		let rockOutput = rock.addEventListener("click", function(){playRock(playerScore, computerScore, draws)});
+
+
+
+
 	</script>
 </html>

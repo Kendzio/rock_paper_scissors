@@ -1,0 +1,45 @@
+h1 {
+	 text-align: center;
+	 margin: 30px 0;
+}
+
+h2 {
+	text-align: center;
+	margin: 30px 0 100px 0;
+}
+
+.buttons {
+	text-align: center;
+}
+
+.buttons button {
+	padding: 10px 30px;
+	margin: 15px 7px;
+	font-size: 20px;
+	background-color: #00cccc;
+	border-radius: 8px;
+}
+
+.results {
+	text-align: center;
+}
+
+.results p {
+	display: inline-block;
+	margin: 30px 20px;
+	font-size: 20px;
+
+}
+
+body {
+	background-color: #e6ffff;
+}
+
+#round_message p{
+	font-size: 25px;
+	text-align: center;
+	margin: 10px;
+	border: 2px solid red;
+	border-radius: 8px;
+	height:28px;
+}
